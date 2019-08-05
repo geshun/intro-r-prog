@@ -1,8 +1,9 @@
 ---
-author: geshun
+title: "Introduction to R Programming"
+author: "geshun"
 date: "`r Sys.Date()`"
-output: bookdown::gitbook
 site: bookdown::bookdown_site
+documentclass: book
 ---
 
 # Introduction to R Programming {-}
