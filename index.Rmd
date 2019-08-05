@@ -1,0 +1,10 @@
+---
+author: geshun
+date: "`r Sys.Date()`"
+output: bookdown::gitbook
+site: bookdown::bookdown_site
+---
+
+# Introduction to R Programming {-}
+
+Documenting my understanding of R as a programming language and tool for data analysis.
