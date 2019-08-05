@@ -214,7 +214,7 @@ I choose these three packages for reading files because they are what people usu
 
 \begin{verbatim}
 ##    x million, $ y project
-## 1:            5         c
+## 1:            5         a
 \end{verbatim}
 
 \begin{Shaded}
@@ -227,7 +227,7 @@ I choose these three packages for reading files because they are what people usu
 ## # A tibble: 1 x 2
 ##   `x million, $` `y project`
 ##            <dbl> <chr>      
-## 1              5 c
+## 1              5 a
 \end{verbatim}
 
 \hypertarget{the-mean-question}{%
@@ -250,7 +250,7 @@ First of all, they all have the same output. The output looks like:
 \begin{verbatim}
 ## function (x, ...) 
 ## UseMethod("mean")
-## <bytecode: 0x0000000018ee6d20>
+## <bytecode: 0x0000000018ee6d58>
 ## <environment: namespace:base>
 \end{verbatim}
 
@@ -327,7 +327,7 @@ The \texttt{tracemem()} function is helpful to see when an object gets copied. O
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "<000000001CA2C790>"
+## [1] "<000000001CA2CED8>"
 \end{verbatim}
 
 \begin{Shaded}
@@ -338,7 +338,7 @@ The \texttt{tracemem()} function is helpful to see when an object gets copied. O
 \end{Shaded}
 
 \begin{verbatim}
-## tracemem[0x000000001ca2c790 -> 0x000000002379cb30]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir <Anonymous> <Anonymous>
+## tracemem[0x000000001ca2ced8 -> 0x000000002379c380]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir <Anonymous> <Anonymous>
 \end{verbatim}
 
 \begin{Shaded}
@@ -358,7 +358,7 @@ We see that only one copy of \texttt{x} occurs. It would not have made any diffe
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "<000000001D0D4A70>"
+## [1] "<000000001D0D51B8>"
 \end{verbatim}
 
 \begin{Shaded}
@@ -368,7 +368,7 @@ We see that only one copy of \texttt{x} occurs. It would not have made any diffe
 \end{Shaded}
 
 \begin{verbatim}
-## tracemem[0x000000001d0d4a70 -> 0x00000000233147e8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir <Anonymous> <Anonymous>
+## tracemem[0x000000001d0d51b8 -> 0x000000002335ef00]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir <Anonymous> <Anonymous>
 \end{verbatim}
 
 \begin{Shaded}
@@ -388,7 +388,7 @@ Showing that only one copy would have been created either tracing \texttt{x} or 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "<000000001946F518>"
+## [1] "<000000001946F400>"
 \end{verbatim}
 
 \begin{Shaded}
@@ -398,8 +398,8 @@ Showing that only one copy would have been created either tracing \texttt{x} or 
 \end{Shaded}
 
 \begin{verbatim}
-## tracemem[0x000000001946f518 -> 0x000000001c787990]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir <Anonymous> <Anonymous> 
-## tracemem[0x000000001c787990 -> 0x000000001e6516e8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir <Anonymous> <Anonymous>
+## tracemem[0x000000001946f400 -> 0x0000000019329108]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir <Anonymous> <Anonymous> 
+## tracemem[0x0000000019329108 -> 0x000000001e652180]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir <Anonymous> <Anonymous>
 \end{verbatim}
 
 \begin{Shaded}

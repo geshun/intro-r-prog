@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Binding | _main.utf8.md</title>
-  <meta name="description" content="" />
+  <title>2 Binding | Introduction to R Programming</title>
+  <meta name="description" content="2 Binding | Introduction to R Programming" />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Binding | _main.utf8.md" />
+  <meta property="og:title" content="2 Binding | Introduction to R Programming" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Binding | _main.utf8.md" />
+  <meta name="twitter:title" content="2 Binding | Introduction to R Programming" />
   
   
   
@@ -112,6 +112,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -124,6 +125,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href=index.html>Introduction to R Programming</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction to R Programming</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="binding.html"><a href="binding.html"><i class="fa fa-check"></i><b>2</b> Binding</a><ul>
@@ -133,6 +137,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.1" data-path="binding.html"><a href="binding.html#tracemem"><i class="fa fa-check"></i><b>2.3.1</b> <code>tracemem()</code></a></li>
 </ul></li>
 </ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/geshun/intro-r-prog.git" target="blank">geshun</a></li>
+
 </ul>
 
       </nav>
@@ -142,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to R Programming</a>
           </h1>
         </div>
 
@@ -179,12 +186,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>I choose these three packages for reading files because they are what people usually use. Each by default, read the column names differently. Sometimes, the column names can carry extra information for understanding the data. Data familiarization is key in doing meaningful analysis. Allowing for name check in <code>read.csv</code> can replace useful information with not-so useful one (like replacing the dollar sign with a “.”). We lose the information that the currency is US Dollars. Also, there are a lot of periods to remember when referring to the column names. Though <code>fread</code> returns the name unaltered, <code>read_csv</code> adds backtick to indicate that the names are non-syntactic, which is precisely how you would refer to the names when interacting with the dataframe, for instance selecting roles.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">df_dtable[<span class="st">`</span><span class="dt">x million, $</span><span class="st">`</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>##    x million, $ y project
-## 1:            5         e</code></pre>
+## 1:            5         d</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">dplyr<span class="op">::</span><span class="kw">filter</span>(df_readr, <span class="st">`</span><span class="dt">x million, $</span><span class="st">`</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##   `x million, $` `y project`
 ##            &lt;dbl&gt; &lt;chr&gt;      
-## 1              5 e</code></pre>
+## 1              5 d</code></pre>
 </div>
 <div id="the-mean-question" class="section level2">
 <h2><span class="header-section-number">2.2</span> The mean question</h2>
@@ -197,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>First of all, they all have the same output. The output looks like:</p>
 <pre><code>## function (x, ...) 
 ## UseMethod(&quot;mean&quot;)
-## &lt;bytecode: 0x0000000018e97fa0&gt;
+## &lt;bytecode: 0x0000000018ee6d20&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>However, having the same output does not imply the same underlying object (in terms of address in memory). <code>m &lt;- 1:4</code> and <code>n &lt;- 1:4</code> have the same output but different underlying objects as can be seen using <code>obj_addr(m) == obj_addr(n)</code> which produces <code>FALSE</code> though <code>identical(m, n)</code> results to <code>TRUE</code>.</p>
 <p>To answer the question, we could do <code>obj_addrs(list(mean, base::mean, get('mean'), evalq(mean), match.fun('mean')))</code> and notice that the memory addresses are the same and hence they all point to the same underlying object.</p>
@@ -232,27 +239,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>tracemem()</code> function is helpful to see when an object gets copied. One can know the number of times an object get copied in a single operation for instance.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
 <a class="sourceLine" id="cb15-2" title="2"><span class="kw">tracemem</span>(x)</a></code></pre></div>
-<pre><code>## [1] &quot;&lt;000000001C96CC78&gt;&quot;</code></pre>
+<pre><code>## [1] &quot;&lt;000000001CF92410&gt;&quot;</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">y &lt;-<span class="st"> </span>x</a>
 <a class="sourceLine" id="cb17-2" title="2">y[[<span class="dv">3</span>]] &lt;-<span class="st"> </span>12L</a></code></pre></div>
-<pre><code>## tracemem[0x000000001c96cc78 -&gt; 0x0000000022da2d40]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
+<pre><code>## tracemem[0x000000001cf92410 -&gt; 0x00000000232eb0f0]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">untracemem</span>(x)</a></code></pre></div>
 <p>We see that only one copy of <code>x</code> occurs. It would not have made any difference even if we had traced the memory of <code>y</code> since they both point to the same object. In this case tracing <code>x</code> will be the same as tracing <code>y</code>. Realize that there is no modification and hence no copy when we did <code>y &lt;- x</code>. The modification occurred when we did <code>y[[3]] &lt;- 12L</code>.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
 <a class="sourceLine" id="cb20-2" title="2">y &lt;-<span class="st"> </span>x</a>
 <a class="sourceLine" id="cb20-3" title="3"><span class="kw">tracemem</span>(y)</a></code></pre></div>
-<pre><code>## [1] &quot;&lt;000000001CEB8858&gt;&quot;</code></pre>
+<pre><code>## [1] &quot;&lt;00000000198801B0&gt;&quot;</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">y[[<span class="dv">3</span>]] &lt;-<span class="st"> </span>12L</a></code></pre></div>
-<pre><code>## tracemem[0x000000001ceb8858 -&gt; 0x000000001e20aad8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
+<pre><code>## tracemem[0x00000000198801b0 -&gt; 0x000000001eb85cd8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">untracemem</span>(y)</a></code></pre></div>
 <p>Showing that only one copy would have been created either tracing <code>x</code> or <code>y</code>. Let’s slightly change what we are assigning to the third element of the vector from integer to double.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
 <a class="sourceLine" id="cb25-2" title="2">y &lt;-<span class="st"> </span>x</a>
 <a class="sourceLine" id="cb25-3" title="3"><span class="kw">tracemem</span>(y)</a></code></pre></div>
-<pre><code>## [1] &quot;&lt;0000000015F94860&gt;&quot;</code></pre>
+<pre><code>## [1] &quot;&lt;000000001BD12E80&gt;&quot;</code></pre>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">y[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="dv">12</span></a></code></pre></div>
-<pre><code>## tracemem[0x0000000015f94860 -&gt; 0x000000001e98f578]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
-## tracemem[0x000000001e98f578 -&gt; 0x000000001ec251c0]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
+<pre><code>## tracemem[0x000000001bd12e80 -&gt; 0x0000000023309c48]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
+## tracemem[0x0000000023309c48 -&gt; 0x000000001f098860]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book FUN lapply unlist render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">untracemem</span>(y)</a></code></pre></div>
 <p>Now we have two instances of different copies. Why?</p>
 
@@ -302,7 +309,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["intro-r-prog.pdf", "intro-r-prog.epub"],
 "toc": {
 "collapse": "subsection"
 }
