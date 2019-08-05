@@ -6,6 +6,6 @@ site: bookdown::bookdown_site
 documentclass: book
 ---
 
-# Introduction to R Programming {-}
+# R Programming {-}
 
 Documenting my understanding of R as a programming language and tool for data analysis.

@@ -1,4 +1,6 @@
 book_filename: "intro-r-prog"
+output_dir: "docs"
+edit: https://github.com/geshun/intro-r-prog/blob/master/%s
 delete_merged_file: true
 language:
   ui:
